@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <!-- The purpose of "path" is unknown, and changing it does nothing, and nothing can be found on the internet -->
+  <!-- The id is aligned to the application ID where we build it from the main function -->
+  <schema id="learn_gtk4_settings" path="/learn_gtk4_settings/">
+    <key name="is-switch-enabled" type="b">
+      <default>false</default>
+      <summary>Default switch state</summary>
+    </key>
+  </schema>
+</schemalist>
