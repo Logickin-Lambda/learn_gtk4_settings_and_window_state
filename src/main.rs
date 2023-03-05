@@ -1,24 +1,26 @@
+mod custom_window;
+
 use gio::Settings;
 use gtk::gio::SettingsBindFlags;
-use gtk::glib::signal::Inhibit;
-use gtk::{prelude::*, Window};
-use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
+use gtk::{prelude::*};
+use gtk::{gio, glib, Align, Application, Switch};
+use custom_window::Window;
 
-const APP_ID: &str = "learn_gtk4_settings";
+const APP_ID_SETTINGS: &str = "learn_gtk4.settings_basics";
 
 fn main() -> glib::ExitCode{
     
-    let app = Application::builder().application_id(APP_ID).build();
+    let app_settings = Application::builder().application_id(APP_ID_SETTINGS).build();
 
-    app.connect_activate(build_ui);
+    app_settings.connect_activate(build_ui_settings);
 
-    app.run()
+    app_settings.run()
 }
 
-fn build_ui (app: &Application){
+fn build_ui_settings (app: &Application){
 
     // initialize settings from gschema
-    let settings = Settings::new(APP_ID);
+    let settings = Settings::new(APP_ID_SETTINGS);
 
     // get the switch state
     let is_switch_enabled = settings.boolean("is-switch-enabled");
@@ -51,11 +53,9 @@ fn build_ui (app: &Application){
         .flags(SettingsBindFlags::DEFAULT)
         .build();
 
-    let window = Window::builder()
-        .application(app)
-        .title("Button with State")
-        .child(&switch)
-        .build();
-
+    let window = Window::new(app);
+    window.set_title(Some("Button with State"));
+    window.set_child(Some(&switch));
     window.present();
+
 }

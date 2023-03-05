@@ -2,10 +2,22 @@
 <schemalist>
   <!-- The purpose of "path" is unknown, and changing it does nothing, and nothing can be found on the internet -->
   <!-- The id is aligned to the application ID where we build it from the main function -->
-  <schema id="learn_gtk4_settings" path="/learn_gtk4_settings/">
+  <schema id="learn_gtk4.settings_basics" path="/learn_gtk4/settings_basics/">
     <key name="is-switch-enabled" type="b">
       <default>false</default>
       <summary>Default switch state</summary>
+    </key>
+    <key name="window-width" type="i">
+        <default>-1</default>
+        <summary>Default window width</summary>
+    </key>
+    <key name="window-height" type="i">
+        <default>-1</default>
+        <summary>Default window height</summary>
+    </key>
+    <key name="is-maximized" type="b">
+        <default>false</default>
+        <summary>Default window maximized behaviour</summary>
     </key>
   </schema>
 </schemalist>
