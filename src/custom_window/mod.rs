@@ -12,16 +12,20 @@ glib::wrapper! {
         // so we need to "inherit" those modules
         @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
 
-        // we need to implement some of the traites, to ensure the "object" to have certain behavior:
+        // we need to implement some of the interfaces, to ensure the "object" to have certain behavior:
         // TODO: study the following structs and see the purpose of them:
-        // Action Group    : 
-        // ActionMap       : 
-        // Accessible      : 
-        // Buildable       : 
-        // ConstraintTarget: 
-        // Native          : 
-        // Root            : 
-        // ShortcutManager : 
+        // The purpose might be wrong, but they will be corrected once I have more understanding to the interfaces
+
+        // Action Group    : Grouping actions for an object, supporting adding, changing, removing, changing state of actions using signal.
+        //                   It generally used for showing list of action for user using menu, suggested by the document.
+        // ActionMap       : Providing naming mapping so that makes sure that the action group name are unique.
+        // Accessible      : Describes UI elements with the concept of "role" and "attribute"
+        // Buildable       : Used for extending the obejct by editing the setting names and properties while in the deserialized form.
+        // ConstraintTarget: Used for targeting constraint? Documentations don't seem clear about this interface.
+        // Native          : Providing a surface (e.g. a window) for the ui widgets
+        // Root            : Makes the widget as a top level widget so that can be used for managing the layout of the application, and
+        //                 : it can also used for setting the keyboard focus.
+        // ShortcutManager : Used for define behavior when there is a control short-cut input 
 
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
@@ -61,7 +65,7 @@ impl Window {
 
         Ok(())
     }
-
+ 
     fn load_window_size(&self) {
         // Get the window state from "Settings"
         let width = self.settings().int("window-width");
